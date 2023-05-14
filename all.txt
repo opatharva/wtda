@@ -1,0 +1,1798 @@
+Slip 1
+
+
+
+ <html> 
+
+    <head> 
+
+        <title>Count Page Access</title> 
+
+   </head> 
+
+  <body> 
+
+    <?php 
+
+
+
+        if (!isset($_COOKIE['count']))
+
+        {
+
+     ?> 
+
+        Welcome! This is the first time you have viewed this page. 
+
+    <?php 
+
+            $cookie = 1;
+
+            setcookie("count", $cookie);
+
+        }
+
+        else
+
+        {
+
+            $cookie = $_COOKIE['count']++;
+
+            setcookie("count", $cookie);
+
+            ?> 
+
+    You have viewed this page <?= $_COOKIE['count'] ?> times. 
+
+    <?php  }// end else  
+
+    ?> 
+
+   </body> 
+
+</html>
+
+
+
+
+
+Q2
+
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LinearRegression
+
+
+
+data = {'Position': ['Business Analyst', 'Junior Consultant', 'Senior Consultant', 'Manager', 'Country Manager', 'Region Manager', 'Partner', 'Senior Partner', 'C-level', 'CEO'],
+
+        'Level': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+
+        'Salary': [45000, 50000, 60000, 80000, 110000, 150000, 200000, 300000, 500000, 1000000]}
+
+
+
+df = pd.DataFrame(data)
+
+
+
+X = df[['Level']]  # Independent variable
+
+y = df['Salary']   # Target variable
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+
+
+
+
+print("Training set:")
+
+print(X_train)
+
+print(y_train)
+
+print("---------------------")
+
+print("Testing set:")
+
+print(X_test)
+
+print(y_test)
+
+print("---------------------")
+
+
+
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+
+
+y_pred = model.predict(X_test)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 2
+
+
+Q1
+
+
+
+save as set_a2.html
+run as set_a2.html
+<html>
+<body>
+<form action="set_a2.php" method="get">
+<center>
+<b>Select font style :</b><input type=text name=s1> <br>
+<b>Enter font size : </b><input type=text name=s><br>
+<b>Enter font color : </b><input type=text name=c><br>
+<b>Enter background color :</b> <input type=text name=b><br>
+<input type=submit value="Next">
+</center>
+</form>
+</body>
+</html>
+
+
+
+
+save as set_a2.php
+<?php
+echo "style is ".$_GET['s1']."<br>color is ".$_GET['c']."<br>Background color is ".$_GET['b']."<br>size is ".$_GET['s'];
+setcookie("set1",$_GET['s1'],time()+3600);
+setcookie("set2",$_GET['c'],time()+3600);
+setcookie("set3",$_GET['b'],time()+3600);
+setcookie("set4",$_GET['s'],time()+3600);
+?>
+
+<html>
+<body>
+<form action="set_a3.php">
+<input type=submit value=OK>
+</form>
+</body>
+</html>
+
+
+
+
+save as set_a3.php
+<?php
+$style = $_COOKIE['set1'];
+$color = $_COOKIE['set2'];
+$size = $_COOKIE['set4'];
+$b_color = $_COOKIE['set3'];
+$msg = "Hello..!";
+echo "<body bgcolor=$b_color>";
+echo "<font color=$color size=$size>$msg";
+echo "</font></body>";
+?>
+
+
+
+
+Q2
+
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LinearRegression
+
+data = {'Years of Experience': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+
+        'Salary': [40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000]}
+
+
+
+df = pd.DataFrame(data)
+
+
+
+X = df[['Years of Experience']]  # Independent variable
+
+y = df['Salary']   # Target variable
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+
+
+print("Training set:")
+
+print(X_train)
+
+print(y_train)
+
+print("---------------------")
+
+print("Testing set:")
+
+print(X_test)
+
+print(y_test)
+
+print("---------------------")
+
+
+
+model = LinearRegression()
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 3
+
+save as login.php
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login using Session</title>
+
+</head>
+
+<body>   
+
+    <form action="" method="POST">
+
+        Username: <input type="text" name="uname" />
+
+        Password: <input type="password" name="pwd"/>
+
+        <input type="submit" value="Login" />
+
+    </form>
+
+            
+
+    <?php 
+
+        session_start();
+
+        // $_SESSION['count']=1;
+
+
+
+        if($_SERVER['REQUEST_METHOD']=='POST')
+
+        {
+
+            $uname=$_POST['uname'];
+
+            $pwd=$_POST['pwd'];
+
+
+
+            if(($uname == 'abc') && ($pwd == 'abc'))
+
+            {
+
+                echo "<a href='next.php'>Next</a>";
+
+            }
+
+            else
+
+            {
+
+                echo "<script>alert('Wrong username or password!')</script>";
+
+                $_SESSION['count']+=1;
+
+                if($_SESSION['count'] == 3)
+
+                {
+
+                    echo "3 Attempts are over!";
+
+                    ?>
+
+                  <h2>Error</h2>
+
+                    <?php     
+
+                    die("Unable to process the script");
+
+                    session_destroy();
+
+                }
+
+            }
+
+        }    
+
+        // else
+
+        // {
+
+        //     die("Unable to process the script");
+
+        // }
+
+    ?>
+
+</body>
+
+</html>
+
+
+
+////save as next.php////
+
+heyy have a good day
+
+
+
+
+
+ Q2
+
+
+
+import pandas as pd
+
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LogisticRegression
+
+from sklearn import metrics
+
+import seaborn as sn
+
+from sklearn.metrics import accuracy_score
+
+import matplotlib.pyplot as plt
+
+
+
+user_ids = np.arange(1, 401)
+
+genders = np.random.choice(['M', 'F'], size=400)
+
+ages = np.random.randint(18, 65, size=400)
+
+estimated_salaries = np.random.randint(20000, 100001, size=400)
+
+purchased = np.random.choice([0, 1], size=400, p=[0.7, 0.3])
+
+data = {'USERID': user_ids, 'GENDER': genders, 'AGE': ages, 'ESTIMATEDSALARY': estimated_salaries, 'PURCHASED': purchased}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+X = df[['GENDER', 'AGE', 'ESTIMATEDSALARY']]
+
+y = df['PURCHASED']
+
+X = pd.get_dummies(X, drop_first=True)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+lr = LogisticRegression()
+
+lr.fit(X_train, y_train)
+
+y_pred = lr.predict(X_test)
+
+confusion_matrix = pd.crosstab(y_test, y_pred, rownames=['Actual'], colnames=['Predicted'])
+
+sn.heatmap(confusion_matrix, annot=True)
+
+print('Accuracy: ',metrics.accuracy_score(y_test, y_pred))
+
+plt.show()
+
+print ("Actual :",y_test)
+
+print ("Predicted:",y_pred)
+
+accuracy = accuracy_score(y_test, y_pred)
+
+print('Accuracy:', accuracy)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 4
+
+save as accept.php
+
+<html>
+
+<body>
+
+<form action="accept2.php" method="get">
+
+<center>  <h2>Enter Employee Details :</h2>  <br>
+
+    <table>
+
+    <tr>  <td><b>Emp no :</b></td>            
+
+    <td><input type=text name=eno></td>        
+
+    </tr>
+
+    <tr>  
+
+        <td><b> Name :</b></td>        
+
+        <td><input type=text name=enm></td>    
+
+        </tr>
+
+    <tr>  <td><b>Address :</b></td>              
+
+            <td><input type=text name=eadd></td>  
+
+            </tr>
+
+    </table>
+
+<br>  <input type=submit value=Show name=submit>
+
+</center>
+
+</form>
+
+</body>
+
+</html>
+
+
+
+save as accept2.php
+
+<?php
+
+session_start();
+
+$eno = $_GET['eno'];
+
+$enm = $_GET['enm'];
+
+$eadd = $_GET['eadd'];
+
+
+
+$_SESSION['eno'] = $eno;
+
+$_SESSION['enm'] = $enm;
+
+$_SESSION['eadd'] = $eadd;
+
+?>
+
+
+
+<html>
+
+<body>
+
+
+
+<form action="display.php" method="post">
+
+<center>
+
+<h2>Enter Earnings of Employee:</h2>
+
+
+
+<table>
+
+<tr><td>Basic : </td><td><input type="text" name="e1"></td><tr>
+
+<tr><td>DA : </td><td><input type="text" name="e2"></td></tr>
+
+<tr><td>HRA : </td><td><input type="text" name="e3"></td></tr>
+
+<tr><td></td><td><input type="submit" value=Next></td></tr>
+
+</table>
+
+</center>
+
+</form>
+
+</body>
+
+</html>
+
+
+
+
+
+save as display.php
+
+<?php
+
+session_start();
+
+$e1 = $_POST['e1'];
+
+$e2 = $_POST['e2'];
+
+$e3= $_POST['e3'];
+
+
+
+echo "<h3>Employee Details</h3> ";
+
+echo "Name : ".$_SESSION['eno']."<br>";
+
+echo "Address : ".$_SESSION['enm']."<br>";
+
+echo "Class : ".$_SESSION['eadd']."<br><br>";
+
+
+
+echo "basic : ".$e1."<br>";
+
+echo "DA : ".$e2."<br>";
+
+echo "HRA : ".$e3."<br>";
+
+
+
+$total = $e1+$e2+$e3;
+
+echo "<h2>Total Of Earnings Is : ".$total."</h2>";
+
+?>
+
+
+
+Q2
+
+import pandas as pd
+
+import io
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LinearRegression
+
+df=pd.read_csv("Fish.csv")
+
+print(df)
+
+X=df.drop(['Weight','Species'],axis=1)
+
+y=df['Weight']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.33, random_state=101)
+
+lr = LinearRegression()
+
+lr.fit(X_train, y_train)
+
+LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None)
+
+print(lr.score(X_test, y_test))
+
+df_t = df.copy()
+
+df_t['Predicted Weight'] = lr.predict(df_t.drop(['Weight', 'Species'], axis=1))
+
+df_t['Difference'] = df_t['Weight'] - df_t['Predicted Weight']
+
+print(df_t[['Weight', 'Predicted Weight', 'Difference']].head(20))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 5
+
+////save as item.xml////
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet type="text/css" href="item.css"?>
+
+<Store>
+
+    <Item>
+
+        <ItemName>Casuals</ItemName>
+
+        <ItemPrice>1000</ItemPrice>
+
+        <Quantity>10</Quantity>
+
+    </Item>
+
+    <Item>
+
+        <ItemName>Sweaters</ItemName>
+
+        <ItemPrice>1100</ItemPrice>
+
+        <Quantity>4</Quantity>
+
+    </Item>
+
+    <Item>
+
+        <ItemName>Gloves</ItemName>
+
+        <ItemPrice>100</ItemPrice>
+
+        <Quantity>50</Quantity>
+
+    </Item>
+
+    <Item>
+
+        <ItemName>Raincoats</ItemName>
+
+        <ItemPrice>1200</ItemPrice>
+
+        <Quantity>10</Quantity>
+
+    </Item>
+
+    <Item>
+
+        <ItemName>Formals</ItemName>
+
+        <ItemPrice>1250</ItemPrice>
+
+        <Quantity>10</Quantity>
+
+    </Item>
+
+</Store>
+
+
+
+
+
+////save as item.css////
+
+Item{
+
+    display: list-item;
+
+    background: darkblue;
+
+}
+
+ItemName {
+
+  color: red;
+
+  font-family: copperPlate Gothic Light;
+
+  font-size: 16pt;
+
+  font: bold;  
+
+}
+
+
+
+ItemPrice, Quantity {
+
+    color: yellow;
+
+    font-family: Arial;
+
+    font-size: 12pt;
+
+    font: bold;
+
+
+
+}
+
+
+
+Q2
+
+import pandas as pd
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+import pandas as pd
+
+import io
+
+from sklearn.metrics import confusion_matrix
+
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.model_selection import train_test_split
+
+
+
+dataset=pd.read_csv("iris.csv")
+
+print(dataset)
+
+x = dataset.iloc[:, [0,1,2,3]].values
+
+y = dataset.iloc[:, 4].values
+
+xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = 0.25, random_state = 0)
+
+classifier = LogisticRegression(random_state = 0,solver='lbfgs',multi_class='auto')
+
+classifier.fit(xtrain, ytrain)
+
+y_pred = classifier.predict(xtest)
+
+print('Actual Values',ytest)
+
+print('Predicted Values',y_pred)
+
+cm = confusion_matrix(ytest, y_pred)
+
+print ("Confusion Matrix : \n", cm)
+
+from sklearn.metrics import accuracy_score
+
+print ("Accuracy : ", accuracy_score(ytest, y_pred))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 6
+
+
+Q1
+
+
+
+////save as bookstore.xml////
+
+<?xml version='1.0'?>
+
+<BookInfo>
+
+    <book>
+
+        <bookno>1</bookno>
+
+        <bookname>JAVA</bookname>
+
+        <authorname> Balguru Swami</authorname>
+
+        <price>250</price>
+
+        <year>2006</year>
+
+    </book>
+
+    <book>
+
+        <bookno>2</bookno>
+
+        <bookname>C</bookname>
+
+        <authorname> Denis Ritchie</authorname>
+
+        <price>500</price>
+
+        <year>1971</year>
+
+    </book>
+
+</BookInfo>
+
+
+
+
+
+////save as set_b1.php////
+
+
+
+<?php
+
+$xml = simplexml_load_file("bookstore.xml");
+
+foreach($xml->children() as $b)
+
+{
+
+    echo $b->bookno;
+
+    echo $b->bookname;
+
+    echo $b->authorname;
+
+    echo $b->price;
+
+    echo $b->year;
+
+}
+
+?>
+
+
+
+Q2
+
+from mlxtend.preprocessing import TransactionEncoder
+
+from mlxtend.frequent_patterns import apriori, association_rules
+
+import pandas as pd
+
+
+
+data = [['bread', 'milk'], 
+
+        ['Bread', 'Diaper', 'beer', 'eggs'], 
+
+        ['milk', 'diaper', 'beer', 'coke'], 
+
+        ['bread', 'milk', 'diaper', 'beer'], 
+
+        ['bread', 'milk', 'diaper', 'coke']]
+
+
+
+te=TransactionEncoder()
+
+te_ar=te.fit(data).transform(data)
+
+df=pd.DataFrame(te_ar,columns=te.columns_)
+
+print(df)
+
+
+
+freq_item=apriori(df,min_support=0.5,use_colnames=True)
+
+print(freq_item)
+
+rules=association_rules(freq_item,metric="support",min_threshold=0.05)
+
+rules=rules.sort_values(['support','confidence'],ascending=[False,False])
+
+print(rules)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 7
+
+Q1
+
+save as movie.xml
+
+<MovieInfo>
+
+    <Movie>
+
+        <MovieNo>1</MovieNo>
+
+        <MovieTitle>RRR</MovieTitle>
+
+        <ActorName>Alia</ActorName>
+
+        <ReleaseYear>2000</ReleaseYear>
+
+    </Movie>
+
+    <Movie>
+
+        <MovieNo></MovieNo>
+
+        <MovieTitle></MovieTitle>
+
+        <ActorName></ActorName>
+
+        <ReleaseYear></ReleaseYear>
+
+    </Movie>
+
+    <Movie>
+
+        <MovieNo></MovieNo>
+
+        <MovieTitle></MovieTitle>
+
+        <ActorName></ActorName>
+
+        <ReleaseYear></ReleaseYear>
+
+    </Movie>
+
+</MovieInfo>
+
+    
+
+//save as read_movie.php
+
+
+
+<?php
+
+
+
+$dom=new DomDocument();
+
+$dom->load("movie.xml");
+
+echo "<h2>Name of Movie</h2>";
+
+$mname=$dom->getElementsByTagName("Movie");
+
+foreach($mname as $m)
+
+{
+
+    echo "<b>$m->textContent<b><br><br>";
+
+}
+
+
+
+?>
+
+
+
+Q2
+
+import pandas as pd
+
+import io
+
+from mlxtend.frequent_patterns import apriori, association_rules
+
+from mlxtend.preprocessing import TransactionEncoder
+
+df = pd.read_csv("market.csv")
+
+print(df)
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+import pandas as pd
+
+from apyori import apriori
+
+transactions = []
+
+for i in range(0, 7500):
+
+    transactions.append([str(df.values[i,j]) for j in range(0, 19)])
+
+    
+
+rule_list = apriori(transactions, min_support = 0.003, min_confidence = 0.3, min_lift = 3, min_length = 2)
+
+results = list(rule_list)
+
+for i in results:
+
+    print('\n')
+
+    print(i)
+
+    print('**********')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 8
+
+////just save with .html extnsion/////
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <h1 id="ch">Welcome</h1>
+
+    <button onclick="promptfunction()">Prompt</button> <br/> <br/>
+
+    <button onclick="confirmfunction()">Confirm</button> <br/> <br/>
+
+    <button onclick="alertfunction()">Alert</button> <br/> <br/>
+
+    <script type="text/javascript">
+
+        function promptfunction()
+
+        {
+
+            var temp = prompt('Exam are near, have you started preparing for it? Yes or No', 'No')
+
+            if (temp === 'No')
+
+            document.getElementById('ch').innerHTML ='Start preparing for the exam'
+
+            else
+
+            document.getElementById('ch').innerHTML = 'Study well'
+
+        }
+
+
+
+        function confirmfunction()
+
+        {
+
+            var temp = confirm('Exam are near, have you started preparing for it?')
+
+            if(temp == false)
+
+            document.getElementById('ch').innerHTML ='Start preparing for the exam'
+
+                else
+
+                    document.getElementById('ch').innerHTML = 'Study well'
+
+        }
+
+
+
+        function alertfunction()
+
+        {
+
+            alert('Exams are near, start preparing')
+
+            document.getElementById('ch').innerHTML ='Start preparing for the exam'
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+Q2
+
+import pandas as pd
+
+from mlxtend.preprocessing import TransactionEncoder
+
+from mlxtend.frequent_patterns import apriori, association_rules
+
+
+
+df = pd.read_csv('groceries.csv', header=None)
+
+
+
+# Print information about the dataset
+
+print("Dataset information:")
+
+print(df.info())
+
+
+
+
+
+df = df.dropna()  
+
+
+
+te = TransactionEncoder()
+
+te_ary = te.fit(df.values).transform(df.values)
+
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+
+
+frequent_itemsets = apriori(df, min_support=0.01, use_colnames=True)
+
+association_rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.5)
+
+
+
+
+
+print("\nFrequent itemset association rules:")
+
+print(association_rules)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 9
+
+Q1
+
+////save with .html extension////
+
+////username:admin password:123////
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <form name="Membership_login" onsubmit="validfunction()" method="post">
+
+        <center>
+
+            <h3>Membership form</h3>
+
+            Username: <input type="text" name="user"></br></br>
+
+            Password: <input type="password" name="pass"></br></br>
+
+            <input type="submit" value="Login">
+
+        </center>
+
+    </form>
+
+    <script type="text/javascript">
+
+        function validfunction()
+
+        {
+
+            var user = document.Membership_login.user.value
+
+            var pass = document.Membership_login.pass.value
+
+            if(user ==="admin" && pass === "123")
+
+                alert("login successful")
+
+            else if(user == null || pass=="")
+
+                alert("Empty username or password field.")
+
+            else
+
+                alert("inavlid credentials.")
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+Q2
+
+
+
+from mlxtend.preprocessing import TransactionEncoder
+
+from mlxtend.frequent_patterns import apriori, association_rules
+
+import pandas as pd
+
+
+
+data = [['fy', 'sy'], 
+
+        ['sy', 'fy', 'ty', 'ffy'], 
+
+        ['ty', 'fy', 'ffy', 'sy'], 
+
+        ['ffy', 'ty', 'fy', 'sy'], 
+
+        ['fy', 'sy', 'ty', 'ffy']]
+
+
+
+te=TransactionEncoder()
+
+te_ar=te.fit(data).transform(data)
+
+df=pd.DataFrame(te_ar,columns=te.columns_)
+
+print(df)
+
+
+
+freq_item=apriori(df,min_support=0.5,use_colnames=True)
+
+print(freq_item)
+
+rules=association_rules(freq_item,metric="support",min_threshold=0.05)
+
+rules=rules.sort_values(['support','confidence'],ascending=[False,False])
+
+print(rules)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 10
+
+Q1
+
+////save with .hmtl extension///
+
+////add image in the folder where program is save////
+
+////save image name as img1///
+
+
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <script src="jquery-3.6.4.min.js"></script>
+
+</head>
+
+<body>
+
+    <img id="img1" src="" alt="" color="black" width="50" height="50">
+
+    <br />
+
+    <button id="beforeBtn">Before</button>
+
+    <button id="afterBtn">After</button>
+
+    
+
+    <script>
+
+        $('document').ready(function(){
+
+            $('#beforeBtn').click(function(){
+
+                $('#img1').before("<h1>Hello</h1>");
+
+            });
+
+            $('#afterBtn').click(function(){
+
+                $('#img1').after("<h1>Bye</h1>");
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+Q2
+
+from mlxtend.preprocessing import TransactionEncoder
+
+from mlxtend.frequent_patterns import apriori, association_rules
+
+import pandas as pd
+
+
+
+data = [['eggs', 'milk','bread'], 
+
+        ['eggs', 'apple'], 
+
+        ['milk', 'bread'], 
+
+        ['apple', 'milk'], 
+
+        ['milk', 'apple', 'bread']]
+
+
+
+te=TransactionEncoder()
+
+te_ar=te.fit(data).transform(data)
+
+df=pd.DataFrame(te_ar,columns=te.columns_)
+
+print(df)
+
+
+
+freq_item=apriori(df,min_support=0.5,use_colnames=True)
+
+print(freq_item)
+
+rules=association_rules(freq_item,metric="support",min_threshold=0.05)
+
+rules=rules.sort_values(['support','confidence'],ascending=[False,False])
+
+print(rules)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 29
+
+Q1 
+
+////save as .php extension////
+
+
+
+  <?php
+
+
+
+    if(isset($_POST['submit'])){
+
+        // get user input
+
+        $number = $_POST['number'];
+
+
+
+        // check if number is valid
+
+        if(!is_numeric($number) || $number < 0){
+
+            echo "<p>Invalid number entered. Please enter a positive integer.</p>";
+
+        }else{
+
+            // calculate fibonacci series
+
+            $fibonacci = "";
+
+            $num1 = 0;
+
+            $num2 = 1;
+
+            $fibonacci .= "$num1, $num2";
+
+            while(($num1 + $num2) <= $number){
+
+                $num3 = $num1 + $num2;
+
+                $fibonacci .= ", $num3";
+
+                $num1 = $num2;
+
+                $num2 = $num3;
+
+            }
+
+            // calculate sum of digits
+
+            $sum = array_sum(str_split($number));
+
+
+
+            // display results
+
+            echo "<p>Fibonacci series up to $number: $fibonacci</p>";
+
+            echo "<p>Sum of digits of $number: $sum</p>";
+
+        }
+
+    }
+
+
+
+    ?>
+
+
+
+    <!-- HTML form to accept user input -->
+
+    <form method="post">
+
+        <label>Enter a positive integer:</label>
+
+        <input type="text" name="number" required>
+
+        <br><br>
+
+        <input type="submit" name="submit" value="Submit">
+
+    </form>
+
+
+
+
+
+Q2
+
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.metrics import accuracy_score
+
+
+
+data = {'Hours Studied': [2, 4, 6, 3, 5, 7, 8, 9, 2, 4, 5, 7, 6, 3],
+
+        'Previous Test Score': [80, 90, 95, 70, 85, 80, 90, 92, 75, 82, 85, 88, 78, 72],
+
+        'Pass': [0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0]}
+
+
+
+df = pd.DataFrame(data)
+
+
+
+X = df[['Hours Studied', 'Previous Test Score']]  # Independent variables
+
+y = df['Pass']  # Target variable
+
+
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+
+
+model = LogisticRegression()
+
+model.fit(X_train, y_train)
+
+
+
+
+
+y_pred = model.predict(X_test)
+
+
+
+accuracy = accuracy_score(y_test, y_pred)
+
+print("Accuracy:", accuracy)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Slip 30
+
+Q1
+
+////save as Book.xml////
+
+<?xml version="1.0" encoding="utf-8"?>
+<ABCBOOK>
+<Technical>
+<BOOK>
+<Book_PubYear>ABC </Book_PubYear>
+<Book_Title>pqr </Book_Title>
+<Book_Author>400 </Book_Author>
+</BOOK>
+</Technical>
+<Cooking>
+<BOOK>
+<Book_PubYear>ABC </Book_PubYear>
+<Book_Title>pqr </Book_Title>
+<Book_Author>400 </Book_Author>
+</BOOK>
+</Cooking>
+<Yoga>
+<BOOK>
+<Book_PubYear>ABC </Book_PubYear>
+<Book_Title>pqr </Book_Title>
+<Book_Author>400 </Book_Author>
+</BOOK>
+</Yoga>
+</ABCBOOK>
+
+
+
+////save as .php extension////
+<?php
+$xml=simplexml_load_file("Book.xml") or die("cannnot load");
+$xmlstring=$xml->asXML();
+echo $xmlstring;
+?>
+
+
+Q2
+
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+import pandas as pd
+
+data = [['butter', 'bread','milk'], 
+        ['butter', 'flour','milk','suger'], 
+        ['butter', 'eggs','milk','salt'], 
+        ['eggs'], 
+        ['butter', 'flour', 'milk','salt']]
+
+te=TransactionEncoder()
+te_ar=te.fit(data).transform(data)
+df=pd.DataFrame(te_ar,columns=te.columns_)
+print(df)
+
+freq_item=apriori(df,min_support=0.5,use_colnames=True)
+print(freq_item)
+rules=association_rules(freq_item,metric="support",min_threshold=0.05)
+rules=rules.sort_values(['support','confidence'],ascending=[False,False])
+print(rules)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
